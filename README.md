@@ -21,9 +21,9 @@ We have chosen to fine-tune the [google-bert/bert-base-uncased](https://huggingf
 2.1. The training cells are commented out as it is not necessary to train the model. The script will pull our fine-tuned model from Huggingface.
 
 ### Results
-After fine-tuning, our model was able to predict fake news articles with a **92%** accuracy on the test set. These results, which seem too good to be true, raise the following questions:
+After fine-tuning, our model was able to predict fake news articles with a **92%** accuracy on the test set. These results, which seem too good to be true, given the small amount of training data we used, raise the following questions:
  - How is our model predicting fake news?  
-When inspecting our model's attention, we have discovered that *content does not matter*. Given that our true news data comes from Reuters, then the structure and the tone of the articles can be very similar. Below you can see the model's attention for an article that is True and correctly labelled and an article that is Fake and is correctly labelled.
+When inspecting our model's attention, we have discovered that *content does not matter*. Given that our true news data comes from Reuters, then the structure and the tone of the non-fake articles can be very similar. Below you can see the model's attention for an article that is True and correctly labelled and an article that is Fake and is correctly labelled.
 
 ![Fake Article](images/Fake.png)
 
@@ -31,14 +31,14 @@ As you can see in the picture above, the model's focus is mostly on the punctuat
 
 ![True Article](images/True.png)
 
-For the True article, the model focus shifts on content and the most important token is *said* as seen above.
+For the True article, the model focus shifts on content and the most important token is *said* as seen above. 
 
  - Why is the model able to do that?  
 The model is able to identify True News and Fake News because of the article structure, tone and punctuation. Given that all of our training data comes exclusively from Reuters, then our model is only able to identify those as True News articles.
 
 ![Over-represented topcis](images/overrepresented.png)
 
-In other words, our Fake News classifier is merely only a *is this a Reuters article?* classifier. Another problem is how the Fake News articles have been classified as Fake. Articles were not fact-checked seperately, but only were flagged as Fake if they came from a news website which is not trust-worthy. In other words, the articles can be completely truthful, but if they came from an untrusted source, then the article is labelled as Fake.
+In other words, our Fake News classifier is merely only a *is this a Reuters article?* classifier. Particularities in the Reuters style guide, e.g. how they attribute quotes, end up being highly important for the classification. Another problem is how the Fake News articles have been classified as Fake. Articles were not fact-checked separately, but only were flagged as Fake if they came from a news website which is not trust-worthy. In other words, the articles can be completely truthful, but if they came from an untrusted source, then the article is labelled as Fake.
 
 ✅ Names of all involved team members  
 ✅ Central problem, domain, data characteristics  
