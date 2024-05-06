@@ -6,7 +6,7 @@ This repository has been developed by:
 - Florian Micliuc (flmi@itu.dk)
 - Markus Sibbesen (mksi@itu.dk)
 
-The project's scope is to classify fake news using a fine-tuned ML model. The data comes from [GonzaloA/fake_news](https://huggingface.co/datasets/GonzaloA/fake_news) and it is comprised of multiple Kaggle data sets. As we identified, 97,5% of the training set comes from [ISOT Fake News Dataset](https://www.kaggle.com/datasets/emineyetm/fake-news-detection-datasets). This is how the dataset has been constructed:
+The project's scope is to classify fake news using a fine-tuned ML model. The data comes from [GonzaloA/fake_news](https://huggingface.co/datasets/GonzaloA/fake_news) and it is comprised of multiple Kaggle data sets. As we identified, **95%** of the training set comes from [ISOT Fake News Dataset](https://www.kaggle.com/datasets/emineyetm/fake-news-detection-datasets). This is how the dataset has been constructed:
 
 *The dataset contains two types of articles fake and real News. This dataset was collected from realworld sources; the truthful articles were obtained by crawling articles from Reuters.com (News website). As for the fake news articles, they were collected from different sources. The fake news articles were collected from unreliable websites that were flagged by Politifact (a fact-checking organization in the USA) and Wikipedia. The dataset contains different types of articles on different topics, however, the majority of articles focus on political and World news topics.*
 
@@ -38,10 +38,4 @@ The model is able to identify True News and Fake News because of the article str
 
 ![Over-represented topcis](images/overrepresented.png)
 
-In other words, our Fake News classifier is merely only a *is this a Reuters article?* classifier. Particularities in the Reuters style guide, e.g. how they attribute quotes, end up being highly important for the classification. Another problem is how the Fake News articles have been classified as Fake. Articles were not fact-checked separately, but only were flagged as Fake if they came from a news website which is not trust-worthy. In other words, the articles can be completely truthful, but if they came from an untrusted source, then the article is labelled as Fake.
-
-✅ Names of all involved team members  
-✅ Central problem, domain, data characteristics  
-✅ Central method: chosen architecture and training mechanisms, with a brief justification if non-standard  
-✅ Key experiments & results: present and explain results, e.g. in simple accuracy tables over error graphs up to visualisations of representations and/or edge cases – keep it crisp  
-✅ Discussion: summarise the most important results and lessons learned (what is good, what can be improved)
+In other words, our Fake News classifier is merely only a *is this a Reuters article?* classifier. Another problem is how the Fake News articles have been classified as Fake. Articles were not fact-checked seperately, but only were flagged as Fake if they came from a news website which is not trust-worthy. In other words, the articles can be completely truthful, but if they came from an untrusted source, then the article is labelled as Fake.
