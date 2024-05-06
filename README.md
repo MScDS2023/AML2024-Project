@@ -15,23 +15,33 @@ We have chosen to fine-tune the [google-bert/bert-base-uncased](https://huggingf
 ### How to run our project?
 1. Create a venv and install the following requirements:
 
-`pip install -r requirements.txt`
+     `pip install -r requirements.txt`
 
-2. Open the main.ipynb and run all.
+2. Open the main.ipynb and run all.  
 2.1. The training cells are commented out as it is not necessary to train the model. The script will pull our fine-tuned model from Huggingface.
 
 ### Results
 After fine-tuning, our model was able to predict fake news articles with a **92%** accuracy on the test set. These results, which seem too good to be true, raise the following questions:
- - How is our model predicting fake news?
+ - How is our model predicting fake news?  
 When inspecting our model's attention, we have discovered that *content does not matter*. Given that our true news data comes from Reuters, then the structure and the tone of the articles can be very similar. Below you can see the model's attention for an article that is True and correctly labelled and an article that is Fake and is correctly labelled.
 
- - Why is the model able to do that?
-The model is able to identify True News and Fake News because of the article structure, tone and punctuation. Given that all of our training data comes exclusively from Reuters, then our model is only able to identify those as True News articles. 
+![Fake Article](images/Fake.png)
 
-In other words, our Fake News classifier is merely only a *is this a Reuters article?* classifier. Another problem regarding our dataset is around how the Fake News articles were labelled as 
+As you can see in the picture above, the model's focus is mostly on the punctuation marks and the tone.
 
-✅ Names of all involved team members
-✅ Central problem, domain, data characteristics
-✅ Central method: chosen architecture and training mechanisms, with a brief justification if non-standard
-Key experiments & results: present and explain results, e.g. in simple accuracy tables over error graphs up to visualisations of representations and/or edge cases – keep it crisp
-Discussion: summarise the most important results and lessons learned (what is good, what can be improved)
+![True Article](images/True.png)
+
+For the True article, the model focus shifts on content and the most important token is *said* as seen above.
+
+ - Why is the model able to do that?  
+The model is able to identify True News and Fake News because of the article structure, tone and punctuation. Given that all of our training data comes exclusively from Reuters, then our model is only able to identify those as True News articles.
+
+![Over-represented topcis](images/overrepresented.png)
+
+In other words, our Fake News classifier is merely only a *is this a Reuters article?* classifier. Another problem is how the Fake News articles have been classified as Fake. Articles were not fact-checked seperately, but only were flagged as Fake if they came from a news website which is not trust-worthy. In other words, the articles can be completely truthful, but if they came from an untrusted source, then the article is labelled as Fake.
+
+✅ Names of all involved team members  
+✅ Central problem, domain, data characteristics  
+✅ Central method: chosen architecture and training mechanisms, with a brief justification if non-standard  
+✅ Key experiments & results: present and explain results, e.g. in simple accuracy tables over error graphs up to visualisations of representations and/or edge cases – keep it crisp  
+✅ Discussion: summarise the most important results and lessons learned (what is good, what can be improved)
